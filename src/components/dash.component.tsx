@@ -33,15 +33,15 @@ const Dash = () => {
       }
     }, 1000);
     return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coords]);
 
   return (
     <div>
-      <div className="">{gps.latitude}</div>
-      <div className="">{gps.longitude}</div>
-      <div className="">{gps.altitude}</div>
-      <div className="">{gps.speed}</div>
+      <div className="">Latitude: {gps.latitude?.toFixed(2)}</div>
+      <div className="">Longitude: {gps.longitude?.toFixed(2)}</div>
+      <div className="">Altitude: {gps.altitude?.toFixed(2)}</div>
+      <div className="">Speed: {gps.speed?.toFixed(2)} m/s</div>
     </div>
   );
 };
