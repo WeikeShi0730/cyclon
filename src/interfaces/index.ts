@@ -1,6 +1,6 @@
 export interface GeolocationType {}
 
-export interface GpsData {
+export interface GpsDataType {
   latitude: number | null;
   longitude: number | null;
   altitude: number | null;

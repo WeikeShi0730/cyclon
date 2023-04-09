@@ -1,6 +1,6 @@
 import React from "react";
 
-const Map = () => {
+const Map = ({ running }: { running: boolean }) => {
   return <div>Map</div>;
 };
 
