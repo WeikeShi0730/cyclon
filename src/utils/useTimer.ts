@@ -29,13 +29,11 @@ export const useTimer = (): [
   const timer = useCallback(() => {
     if (running && isGeolocationAvailable && isGeolocationEnabled && coords) {
       const { latitude, longitude, altitude, speed } = coords;
-      const testSpeed = Math.random() * 10 + 1;
-      console.log(testSpeed);
       setGps({
         latitude,
         longitude,
         altitude,
-        speed: testSpeed,
+        speed: speed,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
