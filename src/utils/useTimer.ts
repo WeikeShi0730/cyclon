@@ -26,9 +26,10 @@ export const useTimer = (): [
       userDecisionTimeout: 5000,
       watchPosition: true,
     });
-  const timer = useCallback(() => {
+  const timer = () => {
     if (running && isGeolocationAvailable && isGeolocationEnabled && coords) {
       const { latitude, longitude, altitude, speed } = coords;
+    //   const testSpeed = Math.random() * 10 + 1;
       setGps({
         latitude,
         longitude,
@@ -37,7 +38,7 @@ export const useTimer = (): [
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [running]);
+  };
   const start = () => {
     setRunning(true);
   };
@@ -47,7 +48,7 @@ export const useTimer = (): [
   const stop = () => {};
   const reset = () => {};
 
-  useInterval(timer, 500);
+  useInterval(timer, 100);
 
   return [start, pause, stop, reset, running, gps];
 };

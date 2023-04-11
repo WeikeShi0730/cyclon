@@ -1,6 +1,7 @@
 import { GpsDataType } from "@/interfaces";
 
 const Dash = ({ gpsData }: { gpsData: GpsDataType }) => {
+  // console.log(gpsData.speed?.toFixed(2));
   return (
     <div>
       <div className="">Latitude: {gpsData.latitude?.toFixed(2)}</div>
