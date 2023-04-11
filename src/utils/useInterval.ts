@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useInterval = (cb: any, intvl: number) => {
+export const useInterval = (cb: () => void, intvl: number) => {
   useEffect(() => {
     const id = setInterval(cb, intvl);
     return () => clearInterval(id);

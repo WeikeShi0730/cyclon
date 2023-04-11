@@ -33,7 +33,7 @@ export const useTimer = (): [
         latitude,
         longitude,
         altitude,
-        speed: speed,
+        speed,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
