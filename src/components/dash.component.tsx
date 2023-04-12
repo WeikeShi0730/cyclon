@@ -1,4 +1,5 @@
 import { GpsDataType } from "@/interfaces";
+import DashCell from "./dash-cell.component";
 
 const Dash = ({
   seconds,
@@ -9,12 +10,19 @@ const Dash = ({
 }) => {
   const time = new Date(seconds * 1000).toISOString().substring(11, 21);
   return (
-    <div>
-      <div className="">Latitude: {gpsData.latitude?.toFixed(2)}</div>
-      <div className="">Longitude: {gpsData.longitude?.toFixed(2)}</div>
-      <div className="">Altitude: {gpsData.altitude?.toFixed(2)}</div>
-      <div className="">Speed: {gpsData.speed?.toFixed(2)} m/s</div>
-      <div className="">Time: {time}</div>
+    <div className="h-full w-full text-gray font-sanss">
+      <div className="h-1/2 grid grid-cols-2">
+        <DashCell
+          title={"Speed (KPH)"}
+          data={gpsData.speed ? gpsData.speed.toFixed(2) : "0.00"}
+        />
+        <DashCell title={"Time"} data={time} />
+      </div>
+      <div className="h-1/2 grid grid-cols-3">
+        <DashCell title={"Dist (KM)"} data={"data"} />
+        <DashCell title={"Avg. (KPH)"} data={"data"} />
+        <DashCell title={"Max (KPH)"} data={"data"} />
+      </div>
     </div>
   );
 };

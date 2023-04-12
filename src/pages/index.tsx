@@ -7,7 +7,7 @@ const Home = () => {
   const [start, pause, stop, reset, running, seconds, gpsData] = useTimer();
   return (
     <div className="min-h-screen w-full flex justify-center">
-      <div className="w-96 bg-slate-300 flex flex-col">
+      <div className="w-96 bg-white flex flex-col">
         <div className="h-1/2 flex justify-center items-center">
           <Map running={running} />
         </div>

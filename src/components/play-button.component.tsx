@@ -11,7 +11,7 @@ const PlayButton = ({
 }) => {
   return (
     <>
-      <div>
+      <div className="text-teal">
         {running ? (
           <button onClick={pause}>
             <FaPause />
