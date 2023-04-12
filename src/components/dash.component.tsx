@@ -10,7 +10,7 @@ const Dash = ({
 }) => {
   const time = new Date(seconds * 1000).toISOString().substring(11, 21);
   return (
-    <div className="h-full w-full pb-16 text-gray font-sans">
+    <div className="h-full w-full text-gray font-sans">
       <div className="h-1/2 grid grid-cols-2">
         <DashCell
           title={"Speed (KPH)"}
