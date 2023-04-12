@@ -10,8 +10,8 @@ const PlayButton = ({
   running: boolean;
 }) => {
   return (
-    <>
-      <div className="text-teal">
+    <div className="absolute bottom-4 w-24 h-24 bg-gray rounded-full border-4 border-teal">
+      <div className="h-full w-full flex justify-center items-center text-5xl text-teal">
         {running ? (
           <button onClick={pause}>
             <FaPause />
@@ -22,7 +22,7 @@ const PlayButton = ({
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
