@@ -9,7 +9,7 @@ const Home = () => {
     <div className="min-h-screen w-full flex justify-center">
       <div className="w-96 bg-white flex flex-col">
         <div className="h-1/2 flex justify-center items-center">
-          <Map running={running} />
+          <Map running={running} gpsData={gpsData} />
         </div>
         <div className="h-1/2 flex justify-center items-center">
           <Dash seconds={seconds} gpsData={gpsData} />

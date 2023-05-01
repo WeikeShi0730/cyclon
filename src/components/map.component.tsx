@@ -1,5 +1,10 @@
+import { useState, useEffect, useMemo } from "react";
 import dynamic from "next/dynamic";
-
+import "leaflet/dist/leaflet.css";
+import { GpsDataType } from "@/interfaces";
+const ChangeMapView = dynamic(() => import("../utils/changeMapVeiw"), {
+  ssr: false,
+});
 const MapContainer = dynamic(
   () => import("react-leaflet").then((module) => module.MapContainer),
   { ssr: false }
@@ -12,23 +17,39 @@ const Marker = dynamic(
   () => import("react-leaflet").then((module) => module.Marker),
   { ssr: false }
 );
-import "leaflet/dist/leaflet.css";
 
-const Map = ({ running }: { running: boolean }) => {
+const Map = ({
+  running,
+  gpsData,
+}: {
+  running: boolean;
+  gpsData: GpsDataType;
+}) => {
+  const [position, setPosition] = useState<[number, number]>([
+    gpsData.latitude!,
+    gpsData.longitude!,
+  ]);
+
+  useEffect(() => {
+    if (running) {
+      setPosition([gpsData.latitude!, gpsData.longitude!]);
+    }
+  }, [gpsData, running]);
 
   return (
     <div className="w-96 h-96">
       <MapContainer
         style={{ height: "100%", width: "100%" }}
-        center={[51.505, -0.09]}
-        zoom={13}
-        scrollWheelZoom={false}
+        center={position}
+        zoom={18}
+        scrollWheelZoom={true}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}></Marker>
+        <Marker position={position}></Marker>
+        <ChangeMapView coords={position} />
       </MapContainer>
     </div>
   );
