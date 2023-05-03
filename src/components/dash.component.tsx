@@ -14,7 +14,7 @@ const Dash = ({
       <div className="h-1/2 grid grid-cols-2">
         <DashCell
           title={"Speed (KPH)"}
-          data={gpsData.speed ? gpsData.speed.toFixed(2) : "0.00"}
+          data={gpsData.speed ? (gpsData.speed * 3.6).toFixed(2) : "0.00"}
         />
         <DashCell title={"Time"} data={time} />
       </div>
