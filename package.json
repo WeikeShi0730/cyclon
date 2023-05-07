@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/geolib": "^2.0.23",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "10.4.14",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "geolib": "^3.3.3",
     "leaflet": "^1.9.3",
     "next": "13.3.0",
     "postcss": "8.4.21",
