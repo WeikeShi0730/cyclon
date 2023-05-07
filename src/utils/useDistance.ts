@@ -8,7 +8,6 @@ const useDistance = ({ gpsData }: { gpsData: GpsDataType }) => {
 
   useEffect(() => {
     if (gpsData && gpsData.longitude !== 0 && gpsData.latitude !== 0) {
-      console.log(gpsData);
       const coords: { latitude: number; longitude: number } = {
         latitude: gpsData.latitude!,
         longitude: gpsData.longitude!,
@@ -19,6 +18,7 @@ const useDistance = ({ gpsData }: { gpsData: GpsDataType }) => {
       }
       setPrevCoords(coords);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gpsData]);
 
   return [distance];

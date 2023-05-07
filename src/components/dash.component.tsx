@@ -22,7 +22,7 @@ const Dash = ({
         <DashCell title={"Time"} data={time} />
       </div>
       <div className="h-1/2 grid grid-cols-3">
-        <DashCell title={"Dist (KM)"} data={(distance / 1000)} />
+        <DashCell title={"Dist (KM)"} data={(distance / 1000).toFixed(2)} />
         <DashCell title={"Avg. (KPH)"} data={"data"} />
         <DashCell title={"Max (KPH)"} data={"data"} />
       </div>
