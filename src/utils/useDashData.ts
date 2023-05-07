@@ -13,7 +13,7 @@ const useDashData = ({
   seconds: number;
   gpsData: GpsDataType;
 }) => {
-  const [distance, setDistance] = useState<number>(0);
+  const [distance, setDistance] = useState<number>(0.0);
   const [prevCoords, setPrevCoords] = useState<CoordsType>({
     latitude: 0,
     longitude: 0,
