@@ -13,6 +13,7 @@ const useDashData = ({
   seconds: number;
   gpsData: GpsDataType;
 }) => {
+  const [speed, setSpeed] = useState<number>(0.0);
   const [distance, setDistance] = useState<number>(0.0);
   const [prevCoords, setPrevCoords] = useState<CoordsType>({
     latitude: 0,
@@ -20,7 +21,6 @@ const useDashData = ({
   });
   const [maxSpeed, setMaxSpeed] = useState<number>(0.0);
 
-  const speed: number = gpsData.speed ? gpsData.speed * 3.6 : 0.0;
   const time: string = useMemo(
     () => new Date(seconds * 1000).toISOString().substring(11, 21),
     [seconds]
@@ -31,7 +31,12 @@ const useDashData = ({
   );
 
   useEffect(() => {
-    if (gpsData && gpsData.longitude !== 0 && gpsData.latitude !== 0 && speed) {
+    if (
+      gpsData &&
+      gpsData.longitude !== 0 &&
+      gpsData.latitude !== 0 &&
+      gpsData.speed
+    ) {
       const coords: CoordsType = {
         latitude: gpsData.latitude!,
         longitude: gpsData.longitude!,
@@ -42,7 +47,10 @@ const useDashData = ({
       }
       setPrevCoords(coords);
 
-      const newMaxSpeed = maxSpeed > speed ? maxSpeed : speed;
+      const currSpeed = gpsData.speed * 3.6;
+      setSpeed(currSpeed);
+
+      const newMaxSpeed = maxSpeed > currSpeed ? maxSpeed : currSpeed;
       setMaxSpeed(newMaxSpeed);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
