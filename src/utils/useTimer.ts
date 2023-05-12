@@ -51,7 +51,11 @@ export const useTimer = (): [
   const pause = () => {
     setRunning(false);
   };
-  const stop = () => {};
+  const stop = () => {
+    setRunning(false);
+    setGps({ latitude: 0, longitude: 0, altitude: 0, speed: 0 });
+    setSeconds(0);
+  };
   const reset = () => {};
 
   useInterval(timer, INVTERVAL);
