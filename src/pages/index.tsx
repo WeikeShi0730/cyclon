@@ -15,7 +15,12 @@ const Home = () => {
           <Dash seconds={seconds} gpsData={gpsData} />
         </div>
         <div className="flex justify-center items-center">
-          <PlayButton start={start} pause={pause} running={running} />
+          <PlayButton
+            start={start}
+            pause={pause}
+            stop={stop}
+            running={running}
+          />
         </div>
       </div>
     </div>
