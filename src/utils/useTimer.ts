@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useInterval } from "./useInterval";
 import { GpsDataType } from "@/interfaces";
 import { useGeolocated } from "@/utils/useGeolocation";

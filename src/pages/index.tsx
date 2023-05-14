@@ -1,6 +1,6 @@
 import Map from "@/components/map.component";
 import Dash from "@/components/dash.component";
-import PlayButton from "@/components/play-button.component";
+import Control from "@/components/control.component";
 import { useTimer } from "@/utils/useTimer";
 
 const Home = () => {
@@ -14,11 +14,12 @@ const Home = () => {
         <div className="h-1/2 flex justify-center items-center">
           <Dash seconds={seconds} gpsData={gpsData} />
         </div>
-        <div className="flex justify-center items-center">
-          <PlayButton
+        <div className="w-full flex justify-center items-center">
+          <Control
             start={start}
             pause={pause}
             stop={stop}
+            seconds={seconds}
             running={running}
           />
         </div>
