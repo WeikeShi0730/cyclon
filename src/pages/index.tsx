@@ -14,7 +14,7 @@ const Home = () => {
         <div className="h-1/2 flex justify-center items-center">
           <Dash seconds={seconds} gpsData={gpsData} />
         </div>
-        <div className="w-full flex justify-center items-center">
+        <div className="flex justify-center items-center">
           <Control
             start={start}
             pause={pause}
