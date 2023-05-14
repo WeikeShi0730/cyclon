@@ -15,10 +15,7 @@ const useDashData = ({
 }) => {
   const [speed, setSpeed] = useState<number>(0.0);
   const [distance, setDistance] = useState<number>(0.0);
-  const [prevCoords, setPrevCoords] = useState<CoordsType>({
-    latitude: 0,
-    longitude: 0,
-  });
+  const [prevCoords, setPrevCoords] = useState<CoordsType | null>(null);
   const [maxSpeed, setMaxSpeed] = useState<number>(0.0);
 
   const time: string = useMemo(
@@ -41,6 +38,7 @@ const useDashData = ({
         latitude: gpsData.latitude!,
         longitude: gpsData.longitude!,
       };
+
       if (prevCoords && coords) {
         const totalDistance = getPreciseDistance(prevCoords, coords);
         setDistance((distance) => distance + totalDistance);
