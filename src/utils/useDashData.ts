@@ -15,6 +15,8 @@ const useDashData = ({
 }) => {
   const [speed, setSpeed] = useState<number>(0.0);
   const [distance, setDistance] = useState<number>(0.0);
+  const [elev, setElev] = useState<number>(0.0);
+  const [elevGain, setElevGain] = useState<number>(0.0);
   const [prevCoords, setPrevCoords] = useState<CoordsType | null>(null);
   const [maxSpeed, setMaxSpeed] = useState<number>(0.0);
 
@@ -32,22 +34,33 @@ const useDashData = ({
       gpsData &&
       gpsData.longitude !== 0 &&
       gpsData.latitude !== 0 &&
-      gpsData.speed
+      gpsData.speed &&
+      gpsData.altitude
     ) {
       const coords: CoordsType = {
         latitude: gpsData.latitude!,
         longitude: gpsData.longitude!,
       };
-
+      /** Distance */
       if (prevCoords && coords) {
         const totalDistance = getPreciseDistance(prevCoords, coords);
         setDistance((distance) => distance + totalDistance);
       }
       setPrevCoords(coords);
 
+      /** Elevation */
+      const currentElev = gpsData.altitude;
+      if (elev && elev !== 0) {
+        const newElevGain = currentElev - elev > 0 ? currentElev - elev : 0;
+        setElevGain((elevGain) => elevGain + newElevGain);
+      }
+      setElev(currentElev);
+
+      /** Current Speed */
       const currSpeed = gpsData.speed * 3.6;
       setSpeed(currSpeed);
 
+      /** Max Speed */
       const newMaxSpeed = maxSpeed > currSpeed ? maxSpeed : currSpeed;
       setMaxSpeed(newMaxSpeed);
     } else if (
@@ -58,6 +71,7 @@ const useDashData = ({
       gpsData.altitude === 0
     ) {
       setDistance(0);
+      setElevGain(0);
       setSpeed(0);
       setMaxSpeed(0);
     }
@@ -68,6 +82,7 @@ const useDashData = ({
     speed.toFixed(2),
     time,
     (distance / 1000).toFixed(2),
+    elevGain.toFixed(2),
     avgSpeed.toFixed(2),
     maxSpeed.toFixed(2),
   ];
