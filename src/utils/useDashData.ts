@@ -50,6 +50,16 @@ const useDashData = ({
 
       const newMaxSpeed = maxSpeed > currSpeed ? maxSpeed : currSpeed;
       setMaxSpeed(newMaxSpeed);
+    } else if (
+      // If reset or no gpsData
+      gpsData.longitude === 0 &&
+      gpsData.latitude === 0 &&
+      gpsData.speed === 0 &&
+      gpsData.altitude === 0
+    ) {
+      setDistance(0);
+      setSpeed(0);
+      setMaxSpeed(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gpsData]);
