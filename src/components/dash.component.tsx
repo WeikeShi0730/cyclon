@@ -16,15 +16,11 @@ const Dash = ({
 
   return (
     <div className="h-full w-full text-gray font-sans">
-      <div className="h-1/3 grid grid-cols-2">
+      <div className="h-full grid grid-cols-2">
         <DashCell title={"Speed (KPH)"} data={speed} />
         <DashCell title={"Time"} data={time} />
-      </div>
-      <div className="h-1/3 grid grid-cols-2">
         <DashCell title={"Dist (KM)"} data={distance} />
         <DashCell title={"Elev Gain (M)"} data={elevGain} />
-      </div>
-      <div className="h-1/3 grid grid-cols-2">
         <DashCell title={"Avg. (KPH)"} data={avgSpeed} />
         <DashCell title={"Max (KPH)"} data={maxSpeed} />
       </div>

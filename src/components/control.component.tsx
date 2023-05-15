@@ -29,9 +29,11 @@ const Control = ({
             <FaPlay />
           </CustomButton>
           {seconds > 0 ? (
-            <CustomButton onButtonClick={stop}>
-              <FaStop />
-            </CustomButton>
+            <div className="justify-self-start">
+              <CustomButton onButtonClick={stop}>
+                <FaStop />
+              </CustomButton>
+            </div>
           ) : (
             <div />
           )}
