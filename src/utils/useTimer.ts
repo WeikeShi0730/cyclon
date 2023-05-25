@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useInterval } from "./useInterval";
 import { GpsDataType } from "@/interfaces";
 import { useGeolocated } from "@/utils/useGeolocation";
+import useAutoPause from "./useAutoPause";
 
-const INVTERVAL = 100;
-const SECOND_INCREMET = INVTERVAL / 1000;
+const RUNNING_INVTERVAL = 100;
+const SECOND_INCREMET = RUNNING_INVTERVAL / 1000;
+
+const AUTO_PAUSE_INTERVAL = 5000;
 
 export const useTimer = (): [
   () => void,
@@ -32,7 +35,7 @@ export const useTimer = (): [
       watchPosition: true,
     });
 
-  const timer = () => {
+  const runningTimer = () => {
     if (running && isGeolocationAvailable && isGeolocationEnabled && coords) {
       const { latitude, longitude, altitude, speed } = coords;
       setGps({
@@ -44,6 +47,10 @@ export const useTimer = (): [
       setSeconds((seconds) => seconds + SECOND_INCREMET);
     }
   };
+
+  const autoPauseTimer = () => {
+    
+  }
 
   const start = () => {
     setRunning(true);
@@ -58,7 +65,9 @@ export const useTimer = (): [
   };
   const reset = () => {};
 
-  useInterval(timer, INVTERVAL);
+  useInterval(runningTimer, RUNNING_INVTERVAL);
+
+  useAutoPause(autoPauseTimer, AUTO_PAUSE_INTERVAL);
 
   return [start, pause, stop, reset, running, seconds, gps];
 };
