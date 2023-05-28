@@ -49,8 +49,11 @@ export const useTimer = (): [
   };
 
   const autoPauseTimer = () => {
-    
-  }
+    if (running && isGeolocationAvailable && isGeolocationEnabled && coords) {
+      console.log("ININI");
+      pause();
+    }
+  };
 
   const start = () => {
     setRunning(true);
@@ -67,7 +70,7 @@ export const useTimer = (): [
 
   useInterval(runningTimer, RUNNING_INVTERVAL);
 
-  useAutoPause(autoPauseTimer, AUTO_PAUSE_INTERVAL);
+  useAutoPause(autoPauseTimer, AUTO_PAUSE_INTERVAL, coords);
 
   return [start, pause, stop, reset, running, seconds, gps];
 };
