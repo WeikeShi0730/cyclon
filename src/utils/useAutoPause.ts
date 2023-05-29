@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const AUTO_PAUSE_INTERVAL = 5000;
+const AUTO_PAUSE_INTERVAL = 5300;
 const useAutoPause = (
   running: boolean,
   coords: any,
@@ -14,7 +14,6 @@ const useAutoPause = (
   useEffect(() => {
     var id: any;
     if (running && speed === 0) {
-      console.log(speed);
       id = setTimeout(() => {
         pause();
       }, AUTO_PAUSE_INTERVAL);
