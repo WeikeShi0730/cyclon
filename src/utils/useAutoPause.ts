@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 
 const AUTO_PAUSE_INTERVAL = 5000;
-const useAutoPause = (running: boolean, coords: any, pause: () => void) => {
+const useAutoPause = (
+  running: boolean,
+  coords: any,
+  start: () => void,
+  pause: () => void
+) => {
   const [speed, setSpeed] = useState<number>(0);
   if (coords && coords.speed) {
     setSpeed(coords.speed);
@@ -13,8 +18,8 @@ const useAutoPause = (running: boolean, coords: any, pause: () => void) => {
       id = setTimeout(() => {
         pause();
       }, AUTO_PAUSE_INTERVAL);
-      console.log(id);
-    } else {
+    } else if (!running && speed !== 0) {
+      start();
       clearTimeout(id);
     }
     return () => clearTimeout(id);
