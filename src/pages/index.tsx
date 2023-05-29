@@ -2,9 +2,12 @@ import Map from "@/components/map.component";
 import Dash from "@/components/dash.component";
 import Control from "@/components/control.component";
 import { useTimer } from "@/utils/useTimer";
+import useAutoPause from "@/utils/useAutoPause";
 
 const Home = () => {
   const [start, pause, stop, reset, running, seconds, gpsData] = useTimer();
+  useAutoPause(running, gpsData, pause);
+
   return (
     <div className="min-h-screen w-full flex justify-center">
       <div className="w-96 bg-white flex flex-col">
