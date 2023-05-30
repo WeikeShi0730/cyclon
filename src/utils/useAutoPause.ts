@@ -17,9 +17,9 @@ const useAutoPause = (
       id = setTimeout(() => {
         pause();
       }, AUTO_PAUSE_INTERVAL);
-    } else if (!running && speed !== 0) {
-      start();
-      clearTimeout(id);
+    } else {
+      //   start();
+      //   clearTimeout(id);
     }
     return () => clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
