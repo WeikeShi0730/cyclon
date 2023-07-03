@@ -6,7 +6,7 @@ import useAutoPause from "@/utils/useAutoPause";
 
 const Home = () => {
   const [start, pause, stop, reset, running, seconds, gpsData] = useTimer();
-  useAutoPause(running, gpsData, start, pause);
+  // useAutoPause(running, gpsData, start, pause);
 
   return (
     <div className="min-h-screen w-full flex justify-center">
