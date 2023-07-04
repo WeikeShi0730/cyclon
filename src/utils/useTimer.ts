@@ -17,6 +17,7 @@ export const useTimer = (): [
 ] => {
   const [running, setRunning] = useState<boolean>(false);
   const [seconds, setSeconds] = useState<number>(0);
+  const [resumeSeconds, setResumeSeconds] = useState<number>(0);
   const [gps, setGps] = useState<GpsDataType>({
     latitude: 0,
     longitude: 0,
@@ -35,13 +36,17 @@ export const useTimer = (): [
   const runningTimer = () => {
     if (running && isGeolocationAvailable && isGeolocationEnabled && coords) {
       const { latitude, longitude, altitude, speed } = coords;
-      setGps({
-        latitude,
-        longitude,
-        altitude,
-        speed,
-      });
       setSeconds((seconds) => seconds + SECOND_INCREMET);
+      setResumeSeconds((resumeSeconds) => resumeSeconds + SECOND_INCREMET);
+
+      if (resumeSeconds >= 5) {
+        setGps({
+          latitude,
+          longitude,
+          altitude,
+          speed,
+        });
+      }
     }
   };
 
@@ -50,11 +55,13 @@ export const useTimer = (): [
   };
   const pause = () => {
     setRunning(false);
+    setResumeSeconds(0);
   };
   const stop = () => {
     setRunning(false);
     setGps({ latitude: 0, longitude: 0, altitude: 0, speed: 0 });
     setSeconds(0);
+    setResumeSeconds(0);
   };
   const reset = () => {};
 
