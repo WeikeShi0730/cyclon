@@ -4,13 +4,16 @@ import useDistance from "@/utils/useDashData";
 
 const Dash = ({
   seconds,
+  resumeSeconds,
   gpsData,
 }: {
   seconds: number;
+  resumeSeconds: number;
   gpsData: GpsDataType;
 }) => {
   const [speed, time, distance, elevGain, avgSpeed, maxSpeed] = useDistance({
     seconds,
+    resumeSeconds,
     gpsData,
   });
 

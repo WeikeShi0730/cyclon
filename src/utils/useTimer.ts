@@ -13,6 +13,7 @@ export const useTimer = (): [
   () => void,
   boolean,
   number,
+  number,
   GpsDataType
 ] => {
   const [running, setRunning] = useState<boolean>(false);
@@ -38,15 +39,12 @@ export const useTimer = (): [
       const { latitude, longitude, altitude, speed } = coords;
       setSeconds((seconds) => seconds + SECOND_INCREMET);
       setResumeSeconds((resumeSeconds) => resumeSeconds + SECOND_INCREMET);
-
-      if (resumeSeconds >= 5) {
-        setGps({
-          latitude,
-          longitude,
-          altitude,
-          speed,
-        });
-      }
+      setGps({
+        latitude,
+        longitude,
+        altitude,
+        speed,
+      });
     }
   };
 
@@ -67,5 +65,5 @@ export const useTimer = (): [
 
   useInterval(runningTimer, RUNNING_INVTERVAL);
 
-  return [start, pause, stop, reset, running, seconds, gps];
+  return [start, pause, stop, reset, running, seconds, resumeSeconds, gps];
 };

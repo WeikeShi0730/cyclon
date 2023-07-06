@@ -8,9 +8,11 @@ type CoordsType = {
 };
 const useDashData = ({
   seconds,
+  resumeSeconds,
   gpsData,
 }: {
   seconds: number;
+  resumeSeconds: number;
   gpsData: GpsDataType;
 }) => {
   const [speed, setSpeed] = useState<number>(0.0);
@@ -34,8 +36,9 @@ const useDashData = ({
       gpsData &&
       gpsData.longitude !== 0 &&
       gpsData.latitude !== 0 &&
-      gpsData.speed !== 0 &&
-      gpsData.altitude !== 0
+      gpsData.speed &&
+      gpsData.altitude &&
+      resumeSeconds >= 5 // Discard first 5 seconds of data after resuming
     ) {
       const coords: CoordsType = {
         latitude: gpsData.latitude!,
