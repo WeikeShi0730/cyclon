@@ -34,8 +34,8 @@ const useDashData = ({
       gpsData &&
       gpsData.longitude !== 0 &&
       gpsData.latitude !== 0 &&
-      gpsData.speed &&
-      gpsData.altitude
+      gpsData.speed !== 0 &&
+      gpsData.altitude !== 0
     ) {
       const coords: CoordsType = {
         latitude: gpsData.latitude!,
