@@ -37,35 +37,42 @@ const useDashData = ({
       gpsData.longitude !== 0 &&
       gpsData.latitude !== 0 &&
       gpsData.speed &&
-      gpsData.altitude &&
-      resumeSeconds >= 5 // Discard first 5 seconds of data after resuming
+      gpsData.altitude
     ) {
       const coords: CoordsType = {
         latitude: gpsData.latitude!,
         longitude: gpsData.longitude!,
       };
-      /** Distance */
-      if (prevCoords && coords) {
-        const totalDistance = getPreciseDistance(prevCoords, coords);
-        setDistance((distance) => distance + totalDistance);
-      }
-      setPrevCoords(coords);
-
-      /** Elevation */
       const currentElev = gpsData.altitude;
-      if (elev && elev !== 0) {
-        const newElevGain = currentElev - elev > 0 ? currentElev - elev : 0;
-        setElevGain((elevGain) => elevGain + newElevGain);
-      }
+
+      setPrevCoords(coords);
       setElev(currentElev);
 
-      /** Current Speed */
-      const currSpeed = gpsData.speed * 3.6;
-      setSpeed(currSpeed);
+      if (resumeSeconds >= 5) {
+        // Discard first 5 seconds of data after resuming
 
-      /** Max Speed */
-      const newMaxSpeed = maxSpeed > currSpeed ? maxSpeed : currSpeed;
-      setMaxSpeed(newMaxSpeed);
+        /** Distance */
+        if (prevCoords && coords) {
+          const newDistance = getPreciseDistance(prevCoords, coords);
+          setDistance((distance) => distance + newDistance);
+        }
+
+        /** Elevation */
+        if (elev && elev !== 0) {
+          const newElevGain = currentElev - elev > 0 ? currentElev - elev : 0;
+          setElevGain((elevGain) => elevGain + newElevGain);
+        }
+
+        /** Current Speed */
+        const currSpeed = gpsData.speed * 3.6;
+        setSpeed(currSpeed);
+
+        /** Max Speed */
+        const newMaxSpeed = maxSpeed > currSpeed ? maxSpeed : currSpeed;
+        setMaxSpeed(newMaxSpeed);
+
+      }
+
     } else if (
       // If reset or no gpsData
       gpsData.longitude === 0 &&
