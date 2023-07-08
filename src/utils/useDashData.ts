@@ -45,7 +45,7 @@ const useDashData = ({
       setPrevCoords(coords);
       setElev(currentElev);
 
-      if (resumeSeconds >= 5) {
+      if (resumeSeconds >= 3) {
         // Discard first 5 seconds of data after resuming
 
         /** Distance */
