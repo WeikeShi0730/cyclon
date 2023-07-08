@@ -21,14 +21,11 @@ const useDashData = ({
   const [elevGain, setElevGain] = useState<number>(0.0);
   const [prevCoords, setPrevCoords] = useState<CoordsType | null>(null);
   const [maxSpeed, setMaxSpeed] = useState<number>(0.0);
+  const [avgSpeed, setAvgSpeed] = useState<number>(0.0);
 
   const time: string = useMemo(
     () => new Date(seconds * 1000).toISOString().substring(11, 21),
     [seconds]
-  );
-  const avgSpeed: number = useMemo(
-    () => (seconds ? (distance / seconds) * 3.6 : 0.0),
-    [distance, seconds]
   );
 
   useEffect(() => {
@@ -43,7 +40,7 @@ const useDashData = ({
         latitude: gpsData.latitude!,
         longitude: gpsData.longitude!,
       };
-      const currentElev = gpsData.altitude;
+      const currentElev: number = gpsData.altitude;
 
       setPrevCoords(coords);
       setElev(currentElev);
@@ -53,26 +50,29 @@ const useDashData = ({
 
         /** Distance */
         if (prevCoords && coords) {
-          const newDistance = getPreciseDistance(prevCoords, coords);
+          const newDistance: number = getPreciseDistance(prevCoords, coords);
           setDistance((distance) => distance + newDistance);
         }
 
         /** Elevation */
         if (elev && elev !== 0) {
-          const newElevGain = currentElev - elev > 0 ? currentElev - elev : 0;
+          const newElevGain: number =
+            currentElev - elev > 0 ? currentElev - elev : 0;
           setElevGain((elevGain) => elevGain + newElevGain);
         }
 
         /** Current Speed */
-        const currSpeed = gpsData.speed * 3.6;
+        const currSpeed: number = gpsData.speed * 3.6;
         setSpeed(currSpeed);
 
         /** Max Speed */
-        const newMaxSpeed = maxSpeed > currSpeed ? maxSpeed : currSpeed;
+        const newMaxSpeed: number = maxSpeed > currSpeed ? maxSpeed : currSpeed;
         setMaxSpeed(newMaxSpeed);
 
+        /** Avg Speed */
+        const avgSpeed: number = seconds ? (distance / seconds) * 3.6 : 0.0;
+        setAvgSpeed(avgSpeed);
       }
-
     } else if (
       // If reset or no gpsData
       gpsData.longitude === 0 &&
