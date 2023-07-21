@@ -37,8 +37,10 @@ export const useTimer = (): [
   const runningTimer = () => {
     if (running && isGeolocationAvailable && isGeolocationEnabled && coords) {
       const { latitude, longitude, altitude, speed } = coords;
-      setSeconds((seconds) => seconds + SECOND_INCREMET);
       setResumeSeconds((resumeSeconds) => resumeSeconds + SECOND_INCREMET);
+      if (resumeSeconds >= 3) {
+        setSeconds((seconds) => seconds + SECOND_INCREMET);
+      }
       setGps({
         latitude,
         longitude,
