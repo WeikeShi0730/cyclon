@@ -84,6 +84,7 @@ const useDashData = ({
       setElevGain(0);
       setSpeed(0);
       setMaxSpeed(0);
+      setAvgSpeed(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gpsData]);
