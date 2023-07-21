@@ -1,3 +1,4 @@
+import { RESUME_SECONDS } from "./constants";
 import { useState, useEffect, useMemo } from "react";
 import { GpsDataType } from "@/interfaces";
 import { getPreciseDistance } from "geolib";
@@ -45,7 +46,7 @@ const useDashData = ({
       setPrevCoords(coords);
       setElev(currentElev);
 
-      if (resumeSeconds >= 3) {
+      if (resumeSeconds >= RESUME_SECONDS) {
         // Discard first 5 seconds of data after resuming
 
         /** Distance */

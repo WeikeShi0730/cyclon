@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useInterval } from "./useInterval";
 import { GpsDataType } from "@/interfaces";
 import { useGeolocated } from "@/utils/useGeolocation";
-
-const RUNNING_INVTERVAL = 100;
-const SECOND_INCREMET = RUNNING_INVTERVAL / 1000;
+import {
+  RESUME_SECONDS,
+  SECOND_INCREMENT,
+  RUNNING_INVTERVAL,
+} from "./constants";
 
 export const useTimer = (): [
   () => void,
@@ -37,9 +39,9 @@ export const useTimer = (): [
   const runningTimer = () => {
     if (running && isGeolocationAvailable && isGeolocationEnabled && coords) {
       const { latitude, longitude, altitude, speed } = coords;
-      setResumeSeconds((resumeSeconds) => resumeSeconds + SECOND_INCREMET);
-      if (resumeSeconds >= 3) {
-        setSeconds((seconds) => seconds + SECOND_INCREMET);
+      setResumeSeconds((resumeSeconds) => resumeSeconds + SECOND_INCREMENT);
+      if (resumeSeconds >= RESUME_SECONDS) {
+        setSeconds((seconds) => seconds + SECOND_INCREMENT);
       }
       setGps({
         latitude,

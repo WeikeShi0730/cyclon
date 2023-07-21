@@ -1,0 +1,3 @@
+export const RUNNING_INVTERVAL = 100;
+export const SECOND_INCREMENT = RUNNING_INVTERVAL / 1000;
+export const RESUME_SECONDS = 3;
