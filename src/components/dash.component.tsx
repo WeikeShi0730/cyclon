@@ -18,7 +18,7 @@ const Dash = ({
   });
 
   return (
-    <div className="h-full w-full text-gray font-sans">
+    <div className="h-full text-gray font-sans">
       <div className="h-full grid grid-cols-2">
         <DashCell title={"Speed (KPH)"} data={speed} />
         <DashCell title={"Time"} data={time} />
