@@ -2,7 +2,7 @@ import Map from "@/components/map.component";
 import Dash from "@/components/dash.component";
 import Control from "@/components/control.component";
 import { useTimer } from "@/utils/useTimer";
-import useAutoPause from "@/utils/useAutoPause";
+// import useAutoPause from "@/utils/useAutoPause";
 
 const Home = () => {
   const [start, pause, stop, reset, running, seconds, resumeSeconds, gpsData] =
