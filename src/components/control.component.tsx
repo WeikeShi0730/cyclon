@@ -15,15 +15,15 @@ const Control = ({
   running: boolean;
 }) => {
   return (
-    <>
+    <div className="w-full h-6 my-5 flex justify-center items-center">
       {running ? (
-        <div className="w-full h-8 flex justify-center">
+        <div className="w-full flex justify-center">
           <CustomButton onButtonClick={pause}>
             <FaPause />
           </CustomButton>
         </div>
       ) : (
-        <div className="w-full h-8 grid grid-cols-3 justify-items-center">
+        <div className="w-full grid grid-cols-3 justify-items-center">
           <div />
           <CustomButton onButtonClick={start}>
             <FaPlay />
@@ -39,7 +39,7 @@ const Control = ({
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
